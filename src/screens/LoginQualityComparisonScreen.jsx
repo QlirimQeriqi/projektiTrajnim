@@ -106,7 +106,7 @@ function VersionB() {
       onSubmit={onSubmit}
     >
       <label htmlFor="b-email">Email</label>
-      {/* <input
+      <input
         id="b-email"
         type="text"
         value={email}
@@ -115,7 +115,7 @@ function VersionB() {
           setMessage('');
         }}
       />
-      <div className="lqc-inline-feedback">{errors.email ? <small>{errors.email}</small> : null}</div> */}
+      <div className="lqc-inline-feedback">{errors.email ? <small>{errors.email}</small> : null}</div>
 
       <label htmlFor="b-password">Password</label>
       <input
