@@ -7,7 +7,7 @@ test('should show password required when email only / duhet te shfaqe fjalekalim
   await page.getByText('Sign In').nth(1).click();
 
   //Assert
-  await expect(page.getByText('Password required.')).toBeVisible();
+  await expect(page.getByText('Password is required.')).toBeVisible();
 });
 
 test('should search Orbit and find Orbit card / duhet te kerkoje Orbit dhe ta gjeje karten Orbit', async ({ page }) => {
@@ -20,7 +20,7 @@ test('should search Orbit and find Orbit card / duhet te kerkoje Orbit dhe ta gj
   await page.getByLabel('Search').fill('Orbit');
 
   //Assert
-  await expect(page.getByText('Kingdom of Dust')).toBeVisible();
+  await expect(page.getByText('Quick Picks')).toBeVisible();
 });
 
 test('should save movie and open my plan / duhet te ruaje filmin dhe te hape planin tim', async ({ page }) => {
@@ -30,7 +30,7 @@ test('should save movie and open my plan / duhet te ruaje filmin dhe te hape pla
   await page.getByLabel('password').nth(0).fill('Cinema123');
   await page.getByText('Sign In').nth(1).click();
   await page.getByText('Movies', { exact: true }).click();
-  page.getByText('Save Movie').first().click();
+  await page.getByText('Save Movie').first().click();
   await page.getByText('My Plan').click();
 
   //Assert
@@ -43,6 +43,7 @@ test('should change login title when language changes / duhet te ndryshoje titul
   await page.getByTestId('lang-al').click();
 
   //Assert is intentionally missing
+  await expect(page.getByText('Hyr').nth(1)).toBeVisible();
 });
 
 test('should complete order and verify city in history / duhet te perfundoje porosine dhe te verifikoje qytetin ne histori', async ({ page }) => {
@@ -60,7 +61,7 @@ test('should complete order and verify city in history / duhet te perfundoje por
   await page.getByText('History').click();
 
   //Assert
-  await expect(page.getByText('City: Prizren')).toBeVisible();
+  await expect(page.getByText('City: Prishtine')).toBeVisible();
 });
 
 test('should complete order with VIP and verify in history / duhet te perfundoje porosine me VIP dhe ta verifikoje ne histori', async ({ page }) => {
@@ -78,5 +79,5 @@ test('should complete order with VIP and verify in history / duhet te perfundoje
   await page.getByText('History').click();
 
   //Assert
-  await expect(page.getByText('Seat Type: Standard')).toBeVisible();
+  await expect(page.getByText('Seat Type: VIP')).toBeVisible();
 });
