@@ -5,7 +5,7 @@ test('should show error for invalid credentials', async ({ page }) => {
   await page.goto('/');
   await page.getByLabel('Email').fill('wrong@cineplex.com');
   await page.getByText('Password').click();
-  await page.keyboard.type('Wrong123');
+  await page.getByText('Wrong123');
   await page.getByText('Sign In').nth(1).click();
 
   //Assert
