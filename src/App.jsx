@@ -5,6 +5,10 @@ import CartScreen from './screens/CartScreen';
 import AdminScreen from './screens/AdminScreen';
 import HistoryScreen from './screens/HistoryScreen';
 import LoginQualityComparisonScreen from './screens/LoginQualityComparisonScreen';
+import ProjectOneQrApp from './screens/ProjectOneQrApp';
+import ProjectTwoSocialAdminApp from './screens/ProjectTwoSocialAdminApp';
+import ProjectThreeRestaurantDashboard from './screens/ProjectThreeRestaurantDashboard';
+import BuggyPostsLabScreen from './screens/BuggyPostsLabScreen';
 import BrandLogo from './components/BrandLogo';
 import { seedMovies } from './data/seedProducts';
 
@@ -311,6 +315,10 @@ export default function App() {
   const [language, setLanguage] = useState(() => getSavedState('cineplex-language', 'en'));
   const [session, setSession] = useState(() => getSavedSession(SESSION_STORAGE_KEY));
   const [showLoginQualityComparison, setShowLoginQualityComparison] = useState(false);
+  const [showProjectOne, setShowProjectOne] = useState(false);
+  const [showProjectTwo, setShowProjectTwo] = useState(false);
+  const [showProjectThree, setShowProjectThree] = useState(false);
+  const [showBugLab, setShowBugLab] = useState(false);
   const [screen, setScreen] = useState('home');
   const [movies] = useState(() => hydrateMovies(getSavedState('cineplex-movies', seedMovies)));
   const [historyOrders, setHistoryOrders] = useState(() => getSavedState('cineplex-history', []));
@@ -455,6 +463,22 @@ export default function App() {
   const featuredCount = useMemo(() => movies.filter((movie) => movie.rating >= 8).length, [movies]);
 
   if (!session) {
+    if (showBugLab) {
+      return <BuggyPostsLabScreen onExit={() => setShowBugLab(false)} />;
+    }
+
+    if (showProjectThree) {
+      return <ProjectThreeRestaurantDashboard onExit={() => setShowProjectThree(false)} />;
+    }
+
+    if (showProjectTwo) {
+      return <ProjectTwoSocialAdminApp onExit={() => setShowProjectTwo(false)} />;
+    }
+
+    if (showProjectOne) {
+      return <ProjectOneQrApp onExit={() => setShowProjectOne(false)} />;
+    }
+
     if (showLoginQualityComparison) {
       return <LoginQualityComparisonScreen onBack={() => setShowLoginQualityComparison(false)} />;
     }
@@ -466,6 +490,10 @@ export default function App() {
         onLanguageChange={setLanguagePreference}
         t={t}
         onOpenLoginQualityComparison={() => setShowLoginQualityComparison(true)}
+        onOpenProjectOne={() => setShowProjectOne(true)}
+        onOpenProjectTwo={() => setShowProjectTwo(true)}
+        onOpenProjectThree={() => setShowProjectThree(true)}
+        onOpenBugLab={() => setShowBugLab(true)}
       />
     );
   }

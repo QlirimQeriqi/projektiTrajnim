@@ -15,6 +15,10 @@ export default function AuthScreen({
   onLanguageChange,
   t,
   onOpenLoginQualityComparison,
+  onOpenProjectOne,
+  onOpenProjectTwo,
+  onOpenProjectThree,
+  onOpenBugLab,
 }) {
   const [values, setValues] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
@@ -100,6 +104,18 @@ export default function AuthScreen({
     <div className="auth-page">
       <button type="button" className="auth-training-link" onClick={onOpenLoginQualityComparison}>
         Login QA Exercise
+      </button>
+      <button type="button" className="auth-project-link" onClick={onOpenProjectOne}>
+        Projekti 1
+      </button>
+      <button type="button" className="auth-project-two-link" onClick={onOpenProjectTwo}>
+        Projekti 2
+      </button>
+      <button type="button" className="auth-project-three-link" onClick={onOpenProjectThree}>
+        Projekti 3
+      </button>
+      <button type="button" className="auth-buglab-link" onClick={onOpenBugLab}>
+        Players Football
       </button>
 
       <div className="auth-layout">
